@@ -19,12 +19,13 @@ namespace InternshipChat.Data.Entities.Models {
         {
             
         }
-        public User(int id, string name, string surename, string email, string password) {
+		public User(int id, string name, string surename, string email, string password,bool isAdmin) {
 			Id = id;
 			Name = name;
 			Surename = surename;
 			Email = email;
 			_password = password;
+			IsAdmin = isAdmin;
 		}
 	}
 }
