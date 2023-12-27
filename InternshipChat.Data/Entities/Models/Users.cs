@@ -12,6 +12,9 @@ namespace InternshipChat.Data.Entities.Models {
 		public string Email { get; set; } = null!;
 		private string _password { get; set; } = null!;
 		public bool IsAdmin { get; set; } = false;
+		public ICollection<UserCanal> UserCanals { get; set; } = new List<UserCanal>();
+		public ICollection<Message> Messages { get; set; } = new List<Message>();
+
 		public User(string name, string surename, string email, string password) {
 			//Dodaj increasing id
 			Name = name;

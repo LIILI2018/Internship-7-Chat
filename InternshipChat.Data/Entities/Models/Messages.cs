@@ -9,14 +9,15 @@ namespace InternshipChat.Data.Entities.Models {
 		public int Id { get; set; }
 		public string Title { get; set; }
 		public string Content { get; set; }
+
 		public int UserId { get; set; }
 		public int CanalId { get; set; }
+		public Canal Canal { get; set; } = null!;
+		public User User { get; set; } = null!;
 		public Message(string title, string conent, int userId, int canalId) {
-			//Autoincremental Id
 			Title = title;
 			Content = conent;
 			UserId = userId;
 			CanalId = canalId;
-		}
-	}
+		}}
 }
