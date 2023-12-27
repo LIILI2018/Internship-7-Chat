@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace InternshipChat.Data.Entities.Models {
-	public class Canals {
+	public class Canal {
 		public int Id { get; set; }
 	}
 }

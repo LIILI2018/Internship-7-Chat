@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace InternshipChat.Data.Entities.Models {
-	public class Messages {
+	public class Message {
 		public int Id { get; set; }
 		public string Title { get; set; }
 		public string Content { get; set; }
 		public int UserId { get; set; }
 		public int CanalId { get; set; }
-		public Messages(string title, string conent, int userId, int canalId) {
+		public Message(string title, string conent, int userId, int canalId) {
 			//Autoincremental Id
 			Title = title;
 			Content = conent;

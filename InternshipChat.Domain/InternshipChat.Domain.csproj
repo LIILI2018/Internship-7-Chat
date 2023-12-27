@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InternshipChat.Data\InternshipChat.Data.csproj" />
+  </ItemGroup>
+
 </Project>
