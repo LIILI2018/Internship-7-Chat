@@ -14,7 +14,8 @@ namespace InternshipChat.Data.Entities.Models {
 		public int CanalId { get; set; }
 		public Canal Canal { get; set; } = null!;
 		public User User { get; set; } = null!;
-		public Message(string title, string conent, int userId, int canalId) {
+        public Message(){}
+        public Message(string title, string conent, int userId, int canalId) {
 			Title = title;
 			Content = conent;
 			UserId = userId;

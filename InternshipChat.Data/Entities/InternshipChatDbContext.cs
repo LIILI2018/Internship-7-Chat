@@ -1,5 +1,6 @@
 ﻿using InternshipChat.Data.Entities;
 using InternshipChat.Data.Entities.Models;
+using InternshipChat.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ namespace InternshipChat.Data.Entities {
 		public DbSet<Message> Messages => Set<Message>();
 		public DbSet<UserCanal> UserCanals => Set<UserCanal>();
 
+		/*Manualno radiš veze između tablica*/
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			modelBuilder.Entity<UserCanal>()
 				.HasKey(uc => new { uc.UserId, uc.CanalId });//Radi primary key za user canal
@@ -36,7 +38,7 @@ namespace InternshipChat.Data.Entities {
 				.HasOne(m => m.User)
 				.WithMany(u => u.Messages);
 			//Message User veza
-			/*DatabaseSeeder.Seed(modelBuilder);*/
+			Seeder.Seed(modelBuilder);
 			base.OnModelCreating(modelBuilder);
 		}
 	}
@@ -51,7 +53,7 @@ public class InternshipChatContextFactory : IDesignTimeDbContextFactory<Internsh
 
 		config.Providers
 			.First()
-			.TryGet("connectionStrings:add:TodoApp:connectionString", out var connectionString);
+			.TryGet("connectionStrings:add:InternshipChat:connectionString", out var connectionString);
 
 		var options = new DbContextOptionsBuilder<InternshipChatDbContext>()
 			.UseNpgsql(connectionString)
