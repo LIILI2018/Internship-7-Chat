@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternshipChat.Domain.Classes {
+namespace InternshipChat.Data.Entities.Models {
 	public class Canals {
+		public int Id { get; set; }
 	}
 }
