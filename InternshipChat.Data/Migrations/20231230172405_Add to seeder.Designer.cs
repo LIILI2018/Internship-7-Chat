@@ -2,6 +2,7 @@
 using InternshipChat.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InternshipChat.Data.Migrations
 {
     [DbContext(typeof(InternshipChatDbContext))]
-    partial class InternshipChatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231230172405_Add to seeder")]
+    partial class Addtoseeder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,10 +210,6 @@ namespace InternshipChat.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Surename")
                         .IsRequired()
                         .HasColumnType("text");
@@ -226,7 +225,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "IvanRaca@gmail.com",
                             IsAdmin = true,
                             Name = "Ivan",
-                            Password = "RacaJeNajbolji",
                             Surename = "Racetin"
                         },
                         new
@@ -235,7 +233,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "Muzika@gmail.com",
                             IsAdmin = true,
                             Name = "Toni",
-                            Password = "321123",
                             Surename = "Cetinski"
                         },
                         new
@@ -244,7 +241,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "Pjesništvo1000@gmail.com",
                             IsAdmin = true,
                             Name = "Luko",
-                            Password = "12345",
                             Surename = "Paljetak"
                         },
                         new
@@ -253,7 +249,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "RibeSuNajbolje@gmail.com",
                             IsAdmin = true,
                             Name = "Mihaela",
-                            Password = "VoxPopuli123",
                             Surename = "Orah"
                         },
                         new
@@ -262,7 +257,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "Korona123@gmail.com",
                             IsAdmin = false,
                             Name = "Marin",
-                            Password = "0987654321234567890",
                             Surename = "Zika"
                         },
                         new
@@ -271,7 +265,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "BiliPivac@gmail.com",
                             IsAdmin = false,
                             Name = "Vojko",
-                            Password = "EpskiHahač",
                             Surename = "V"
                         },
                         new
@@ -280,7 +273,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "Zoran321@gmail.com",
                             IsAdmin = false,
                             Name = "Zoran",
-                            Password = "TomCruse",
                             Surename = "Tadija"
                         },
                         new
@@ -289,7 +281,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "ZV@gmail.com",
                             IsAdmin = false,
                             Name = "Željko",
-                            Password = "Raketa123",
                             Surename = "Veliki"
                         },
                         new
@@ -298,7 +289,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "ZM@gmail.com",
                             IsAdmin = false,
                             Name = "Željko",
-                            Password = "Vlak123",
                             Surename = "Veliki"
                         },
                         new
@@ -307,7 +297,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "VEDROORDEV@gmail.com",
                             IsAdmin = false,
                             Name = "Veran",
-                            Password = "Šifra",
                             Surename = "Brkan"
                         },
                         new
@@ -316,7 +305,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "MarioDživo2@gmail.com",
                             IsAdmin = false,
                             Name = "Marin",
-                            Password = "NeMaM ŠiFrU",
                             Surename = "Getaldić"
                         },
                         new
@@ -325,7 +313,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "DinoD.@gmail.com",
                             IsAdmin = true,
                             Name = "Dino",
-                            Password = "DDDDd",
                             Surename = "Dujmović"
                         },
                         new
@@ -334,16 +321,6 @@ namespace InternshipChat.Data.Migrations
                             Email = "aa",
                             IsAdmin = true,
                             Name = "Dino",
-                            Password = "aa",
-                            Surename = "Dujmović"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Email = "aaa",
-                            IsAdmin = true,
-                            Name = "Dino",
-                            Password = "aa",
                             Surename = "Dujmović"
                         });
                 });

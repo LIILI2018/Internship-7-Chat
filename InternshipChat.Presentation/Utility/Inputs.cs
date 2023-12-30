@@ -1,5 +1,5 @@
 ﻿namespace InternshipChat.Presentation.Utility {
-	static public class Utility {
+	static public class Inputs {
 		// + +
 		public static int IntInput(string txt) {
 			Console.WriteLine(txt);

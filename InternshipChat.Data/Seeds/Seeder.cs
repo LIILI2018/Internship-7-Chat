@@ -18,7 +18,10 @@ namespace InternshipChat.Data.Seeds {
 				new User(9,"Željko", "Veliki","ZM@gmail.com","Vlak123",false),
 				new User(10,"Veran", "Brkan","VEDROORDEV@gmail.com","Šifra",false),
 				new User(11,"Marin", "Getaldić","MarioDživo2@gmail.com","NeMaM ŠiFrU",false),
-				new User(12,"Dino", "Dujmović","DinoD.@gmail.com","DDDDd",true)
+				new User(12,"Dino", "Dujmović","DinoD.@gmail.com","DDDDd",true),
+				new User(13,"Dino", "Dujmović","aa","aa",true),
+				new User(14,"Dino", "Dujmović","aaa","aa",true)
+
 			});
 			builder.Entity<Canal>()
 			.HasData(new List<Canal>

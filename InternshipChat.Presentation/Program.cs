@@ -1,7 +1,7 @@
-﻿
-using InternshipChat.Presentation.Utility;
+﻿using InternshipChat.Domain.Functions;
 
-MainMenu();
-static void MainMenu() {
-	Utility.OptionInput(["1 - Login","2 - Create acount"]);
-}
+Console.WriteLine(LoginFunctions.Authentication());
+/*/
+var userFunctions = new UserFunctions(RepositoryFactory.Create<UserRepository>());
+Console.WriteLine(userFunctions.GetAllUsers()[16].email);
+Inputs.Wait("");*/

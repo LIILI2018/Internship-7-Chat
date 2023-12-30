@@ -10,22 +10,22 @@ namespace InternshipChat.Data.Entities.Models {
 		public string Name { get; set; } = null!;
 		public string Surename { get; set; } = null!;
 		public string Email { get; set; } = null!;
-		private string _password { get; set; } = null!;
+		public string Password { get; set; } = null!;
 		public bool IsAdmin { get; set; } = false;
 
 		public ICollection<UserCanal> UserCanals { get; set; } = new List<UserCanal>();
 		public ICollection<Message> Messages { get; set; } = new List<Message>();
-        public User()
-        {
-            
-        }
-		public User(int id, string name, string surename, string email, string password,bool isAdmin) {
+		public User(int id, string name, string surename, string email, string password, bool isAdmin) {
 			Id = id;
 			Name = name;
 			Surename = surename;
 			Email = email;
-			_password = password;
+			Password = password;
 			IsAdmin = isAdmin;
+		}
+
+		public bool CheckPassword(string password) {
+            return Password == password;
 		}
 	}
 }
