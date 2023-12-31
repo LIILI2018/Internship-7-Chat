@@ -10,5 +10,5 @@ namespace InternshipChat.Data.Entities.Models {
 		public int CanalId { get; set; }
 		public Canal Canal { get; set; } = null!;
 		public User User { get; set; } = null!;
-	}
+    }
 }

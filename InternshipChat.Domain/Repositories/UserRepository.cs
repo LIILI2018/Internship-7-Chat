@@ -1,11 +1,10 @@
 ﻿using InternshipChat.Data.Entities;
 using InternshipChat.Data.Entities.Models;
 using InternshipChat.Domain.Enums;
-using Microsoft.EntityFrameworkCore;
 
 namespace InternshipChat.Domain.Repositories {
 	public class UserRepository : RepositoryPreset {
-		public UserRepository(InternshipChatDbContext dbContext) : base(dbContext) { }//new InternshipChatDbContext(new DbContextOptionsBuilder(''))) {}
+		public UserRepository(InternshipChatDbContext dbContext) : base(dbContext) { }
 
 		public QueryResponse Add(User user) {
 			DbContext.Users.Add(user);

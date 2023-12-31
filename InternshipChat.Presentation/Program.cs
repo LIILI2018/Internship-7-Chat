@@ -1,7 +1,5 @@
-﻿using InternshipChat.Domain.Functions;
+﻿using InternshipChat.Presentation.Menues;
 
-Console.WriteLine(LoginFunctions.Authentication());
-/*/
-var userFunctions = new UserFunctions(RepositoryFactory.Create<UserRepository>());
-Console.WriteLine(userFunctions.GetAllUsers()[16].email);
-Inputs.Wait("");*/
+
+var user = LoginFunctions.Authentication();
+MainMenu.Create(user);

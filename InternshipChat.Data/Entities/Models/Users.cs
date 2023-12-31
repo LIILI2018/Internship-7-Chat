@@ -23,6 +23,13 @@ namespace InternshipChat.Data.Entities.Models {
 			Password = password;
 			IsAdmin = isAdmin;
 		}
+		public User(int id, string name, string surename, string email, string password) {
+			Id = id;
+			Name = name;
+			Surename = surename;
+			Email = email;
+			Password = password;
+		}
 
 		public bool CheckPassword(string password) {
             return Password == password;

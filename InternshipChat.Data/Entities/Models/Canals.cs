@@ -12,7 +12,6 @@ namespace InternshipChat.Data.Entities.Models {
         public CanalType CanalType { get; set; }
 		public ICollection<UserCanal> UserCanals { get; set; } = new List<UserCanal>();
 		public ICollection<Message> Messages { get; set; } = new List<Message>();
-        public Canal(){}
         public Canal(int id, CanalType ct, string name)
         {
             Id = id;
