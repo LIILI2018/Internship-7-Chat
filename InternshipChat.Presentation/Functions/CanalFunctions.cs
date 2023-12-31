@@ -19,6 +19,10 @@ namespace InternshipChat.Presentation.Functions {
 		public List<Canal> GetAllCanals() {
 			return _canalRepository.FindAll();
 		}
+		public Canal? GetCanalById(int canalId) {
+			return _canalRepository.FindById(canalId);
+		}
+
 		private List<Canal> GetAllCanalsByType(CanalType type) {
 			List<Canal> canals = [];
 			foreach (var canal in GetAllCanals()) {

@@ -15,7 +15,10 @@ namespace InternshipChat.Domain.Repositories {
 			DbContext.Canals.Remove(canal);
 			return SaveChanges();
 		}
-
+		public Canal? FindById(int id) {
+			var canal = DbContext.Canals.Find(id);
+			return canal;/*Ako ne neđe usera vratit će null*/
+		}
 		public List<Canal> FindAll() {
 			return DbContext.Canals.ToList();
 		}

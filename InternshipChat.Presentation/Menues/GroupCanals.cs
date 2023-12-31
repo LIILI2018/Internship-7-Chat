@@ -24,9 +24,9 @@ namespace InternshipChat.Presentation.Menues
                     canal = canalFunctions.SelectCanal();
                     UserCanalFunctions.AddUserToCanal(user, canal);
 					break;
-                /*case 3:
-                    WriteAllCanals();
-                    break;*/
+                case 3:
+                    UserCanalFunctions.WriteAllUsersUserCanals(user, canalFunctions);
+                    break;
             }
         }
     }
