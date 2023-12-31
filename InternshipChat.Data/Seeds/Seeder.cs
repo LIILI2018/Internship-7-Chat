@@ -34,111 +34,27 @@ namespace InternshipChat.Data.Seeds {
 			builder.Entity<UserCanal>()
 			.HasData(new List<UserCanal>
 			{
-				new UserCanal
-				{
-					UserId = 1,
-					CanalId = 1,
-				},
-				new UserCanal
-				{
-					UserId = 2,
-					CanalId = 1,
-				},
-				new UserCanal
-				{
-					UserId = 1,
-					CanalId = 2,
-				},
-				new UserCanal
-				{
-					UserId = 2,
-					CanalId = 2,
-				},
-				new UserCanal
-				{
-					UserId = 3,
-					CanalId = 2,
-				},
-				new UserCanal
-				{
-					UserId = 4,
-					CanalId = 2,
-				},
-				new UserCanal
-				{
-					UserId = 12,
-					CanalId = 2,
-				},
-				new UserCanal
-				{
-					UserId = 1,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 2,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 3,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 4,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 5,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 6,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 7,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 8,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 9,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 10,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 11,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 12,
-					CanalId = 3,
-				},
-				new UserCanal
-				{
-					UserId = 7,
-					CanalId = 4,
-				},
-				new UserCanal
-				{
-					UserId = 12,
-					CanalId = 4,
-				}
+				new UserCanal(1,1),
+				new UserCanal(2,1),
+				new UserCanal(2,2),
+				new UserCanal(3,2),
+				new UserCanal(4,2),
+				new UserCanal(12,2),
+				new UserCanal(1,3),
+				new UserCanal(2,3),
+				new UserCanal(3,3),
+				new UserCanal(4,3),
+				new UserCanal(5,3),
+				new UserCanal(6,3),
+				new UserCanal(7,3),
+				new UserCanal(8,3),
+				new UserCanal(9,3),
+				new UserCanal(10,3),
+				new UserCanal(11,3),
+				new UserCanal(12,3),
+				new UserCanal(7,4),
+				new UserCanal(12,4),
+
 			});
 
 			builder.Entity<Message>()

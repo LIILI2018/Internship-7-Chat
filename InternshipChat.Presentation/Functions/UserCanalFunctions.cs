@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Domain.Enums;
 using InternshipChat.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -22,17 +23,15 @@ namespace InternshipChat.Presentation.Functions {
 			return GetAllUserCanals().Contains(userCanal);
 		}
 
-		public void Create(int userId, int canalId) {
-			var userCanal = new UserCanal {
-				UserId = userId,
-				CanalId = canalId
-			};
-			if (UserCanalExists(userCanal)) {
-                Console.WriteLine("VEć si član tog kanala");
-                return;
+		public QueryResponse AddUserToCanal(User user, Canal canal) {
+		var userCanal = new UserCanal (user.Id,canal.Id);
+            Console.WriteLine($"{userCanal.UserId},\n{userCanal.CanalId},\n");
+
+            if (UserCanalExists(userCanal)) {
+                return QueryResponse.NoChanges;
 			}
-			_userCanalRepository.Add(userCanal);
-            Console.WriteLine("Uspješno dodano?");
+            _userCanalRepository.Add(userCanal);
+			return QueryResponse.Success;
         }
 	}
 }

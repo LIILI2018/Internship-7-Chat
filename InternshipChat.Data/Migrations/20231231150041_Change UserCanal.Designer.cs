@@ -2,6 +2,7 @@
 using InternshipChat.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InternshipChat.Data.Migrations
 {
     [DbContext(typeof(InternshipChatDbContext))]
-    partial class InternshipChatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231231150041_Change UserCanal")]
+    partial class ChangeUserCanal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -372,6 +375,11 @@ namespace InternshipChat.Data.Migrations
                         {
                             UserId = 2,
                             CanalId = 1
+                        },
+                        new
+                        {
+                            UserId = 1,
+                            CanalId = 2
                         },
                         new
                         {
