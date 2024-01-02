@@ -12,6 +12,15 @@ namespace InternshipChat.Presentation.Functions {
 		private List<UserCanal> GetAllUserCanals() {
 			return _userCanalRepository.FindAll();
 		}
+
+		public QueryResponse CreateUserCanal(User user, Canal canal) {
+			var userCanal = new UserCanal(user.Id, canal.Id, user, canal);
+			if (UserCanalExists(userCanal)) {
+				return QueryResponse.NoChanges;
+			}
+			;
+			return _userCanalRepository.Add(userCanal) ;
+		}
 		public List<UserCanal> GetUserCanalByUserId(int userId) {
 			List<UserCanal> allUsersUserCanals = [];
 			foreach (var UserCanal in GetAllUserCanals()) {
@@ -31,14 +40,7 @@ namespace InternshipChat.Presentation.Functions {
 			return GetAllUserCanals().Contains(userCanal);
 		}
 		/**/
-		public QueryResponse AddUserToCanal(User user, Canal canal) {
-			var userCanal = new UserCanal(user.Id, canal.Id);
-			if (UserCanalExists(userCanal)) {
-				return QueryResponse.NoChanges;
-			}
-			_userCanalRepository.Add(userCanal);
-			return QueryResponse.Success;
-		}
+		
 
 		public QueryResponse WriteAllUsersUserCanals(User user, CanalFunctions CF) {
 			foreach (var UserCanal in GetUserCanalByUserId(user.Id)) {

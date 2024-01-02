@@ -3,11 +3,7 @@ using InternshipChat.Domain.Factories;
 using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace InternshipChat.Presentation.Menues {
 	public static class PrivateCanals {
@@ -16,15 +12,16 @@ namespace InternshipChat.Presentation.Menues {
 			var UCF = new UserCanalFunctions(RepositoryFactory.Create<UserCanalRepository>());
 			var MF = new MessageFunctions(RepositoryFactory.Create<MessageRepository>());
 
-			var x = Inputs.OptionInput(["1 - Chat sa korisnikom","2 - Ispiši sve korisnike s kojima si komunicirao","3 - Izlaz"]);
-			/*switch (x) {
+			var x = Inputs.OptionInput(["1 - Chat sa korisnikom", "2 - Ispiši sve korisnike s kojima si komunicirao", "3 - Izlaz"]);
+			switch (x) {
 				case 1:
-					CF.ChatScreen();
+					CF.ChatScreen(CF, UCF, MF, user, Data.Enums.CanalType.Private);
 					break;
-				case 2:
+				/*case 2:
 					UCF.WriteUsersPrivateChats();
-			}*/
+					break;*/
 
+			}
 		}
 	}
 }

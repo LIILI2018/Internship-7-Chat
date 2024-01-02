@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Domain.Enums;
 using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Utility;
 
@@ -9,7 +10,7 @@ namespace InternshipChat.Presentation.Functions {
         {
             _userRepository = userRepository;
         }
-		
+		/**/
 		public List<User> GetAllUsers() { 
 			return _userRepository.FindAll();
 		}
@@ -30,7 +31,7 @@ namespace InternshipChat.Presentation.Functions {
 			}
 			return allIds.Max();
 		}
-		private bool DoesEmailExist(string email) {
+		public bool DoesEmailExist(string email) {
 			List<string> allEmails = [];
 			foreach (var user in GetAllUsers()) {
 				allEmails.Add(user.Email);
@@ -43,20 +44,31 @@ namespace InternshipChat.Presentation.Functions {
 		public User AddUser() {
 			var name = Inputs.StringInput("Unesi ime");
 			var surename = Inputs.StringInput("Unesi prezime");
-			string email;
-			do {
-				email = Inputs.StringInput("Unesi email");
-			} while (DoesEmailExist(email));
-			string password;
-			string repeatedPassword;
-			do {
-				password = Inputs.StringInput("Unesi lozinku");
-				repeatedPassword = Inputs.StringInput("Ponovno unesi lozinku");
-			} while (password != repeatedPassword);
+			var email = Inputs.EmailInput();
+			var password = Inputs.CreatePassword();			
 
             var user = new User(LastId() + 1, name, surename, email, password);
 			_userRepository.Add(user);
 			return user;
+		}
+
+		public User SelectUser() {
+			var users = GetAllUsers();
+			var i = 1;
+			foreach (var user in users) {
+				Console.WriteLine($"{i} - {user.Name};");
+				i++;
+			}
+			int y = 0;
+			bool success = false;
+			do {
+				success = int.TryParse(Console.ReadLine(), out y);
+			} while (!success || y > i || y < 1);
+			return users[y - 1];
+		}
+
+		public QueryResponse UpdateUser(User user, UserVariableChange userVariableChange, string change) {
+			return _userRepository.Update(user, userVariableChange, change);
 		}
 	}
 }

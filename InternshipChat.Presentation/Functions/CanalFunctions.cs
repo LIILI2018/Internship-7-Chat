@@ -1,5 +1,6 @@
 ﻿using InternshipChat.Data.Entities.Models;
 using InternshipChat.Data.Enums;
+using InternshipChat.Domain.Factories;
 using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Utility;
 
@@ -12,11 +13,12 @@ namespace InternshipChat.Presentation.Functions {
 		public CanalFunctions(CanalRepository userRepository) {
 			_canalRepository = userRepository;
 		}
-
+		/**/
 
 		public List<Canal> GetAllCanals() {
 			return _canalRepository.FindAll();
 		}
+
 		public Canal? GetCanalById(int canalId) {
 			return _canalRepository.FindById(canalId);
 		}
@@ -63,9 +65,9 @@ namespace InternshipChat.Presentation.Functions {
 			return allCanals[y - 1];
 		}
 
-		public Canal SelectUsersCanals(UserCanalFunctions UCF, User user) {
+		public Canal SelectUsersCanals(UserCanalFunctions UCF, User user, CanalType canalType) {
 
-			var canals = GetCanalsByType(CanalType.Public);
+			var canals = GetCanalsByType(canalType);
 			var allUsersUserCanal = UCF.GetUserCanalByUserId(user.Id);
 			List<int> canalIdList = [];
 			foreach (var userCanal in allUsersUserCanal) {
@@ -86,9 +88,25 @@ namespace InternshipChat.Presentation.Functions {
 			return canals[y - 1];
 		}
 
-		public void ChatScreen(CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF , User user  ) {
-			var canal = CF.SelectUsersCanals(UCF, user);
+		public void ChatScreen(CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user, CanalType canalType) {
+			Canal canal = null!;
+			var UF = new UserFunctions(RepositoryFactory.Create<UserRepository>());
 			int x = 0;
+			if (canalType == CanalType.Public) {
+				canal = CF.SelectUsersCanals(UCF, user, canalType);
+			}
+			else {
+				x = Inputs.OptionInput(["1 - Nastavi chat", "2 - Novi chat"]);
+
+				if (x == 1) {
+					CF.SelectUsersCanals(UCF, user, canalType);
+				}
+				else{
+					canal = CreateCanal(CanalType.Private);
+                    UCF.CreateUserCanal(user, canal);
+					UCF.CreateUserCanal(UF.SelectUser(), canal);/*--------Postoji li već kanal s tim userom------------*/
+				}
+			}	
 			do {
 				Console.Clear();
 				foreach (var message in MF.GetMessagesByCanalId(canal.Id)) {
@@ -99,8 +117,7 @@ namespace InternshipChat.Presentation.Functions {
 					MF.CreateMessage(user.Id, canal.Id);
 				}
 				Outputs.Wait("");
-			} while (x == 1);
+			} while (x == 1);			
 		}
-
 	}
 }

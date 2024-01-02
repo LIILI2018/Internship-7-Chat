@@ -27,6 +27,27 @@ namespace InternshipChat.Domain.Repositories {
 		public List<User> FindAll() {
 			return DbContext.Users.ToList();
 		}
-	
+		public QueryResponse Update(User user, UserVariableChange userVariableChange, string change) {
+			
+			switch (userVariableChange) {
+				case UserVariableChange.Name:
+					user.Name = change;
+					break;
+				case UserVariableChange.Surename:
+					user.Surename = change;
+					break;
+				case UserVariableChange.Email:
+					user.Email = change;
+					break;
+				case UserVariableChange.Password:
+					user.Password = change;
+					break;
+				case UserVariableChange.AdminStatus:
+					user.IsAdmin = !user.IsAdmin;
+					break;
+			}
+			return SaveChanges();
+		}
+
 	}
 }

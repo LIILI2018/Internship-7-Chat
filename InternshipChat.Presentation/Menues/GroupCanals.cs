@@ -20,11 +20,11 @@ namespace InternshipChat.Presentation.Menues
             {
                 case 1:
                     var canal = CF.CreateCanal(CanalType.Public);
-                    Console.WriteLine(UCF.AddUserToCanal(user, canal));
+                    Console.WriteLine(UCF.CreateUserCanal(user, canal));
                     break;
 
                 case 2:
-                    CF.ChatScreen(CF,UCF,MF,user);                    
+                    CF.ChatScreen(CF,UCF,MF,user, CanalType.Public);                    
 					break;
 
                 case 3:

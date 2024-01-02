@@ -15,5 +15,12 @@ namespace InternshipChat.Data.Entities.Models {
             UserId = userId;
             CanalId = canalId;
         }
-    }
+		public UserCanal(int userId, int canalId, User user, Canal canal)
+		{
+			UserId = userId;
+			CanalId = canalId;
+			User = user;
+			Canal = canal;
+		}
+	}
 }
