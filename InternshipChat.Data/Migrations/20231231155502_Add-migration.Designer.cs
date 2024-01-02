@@ -3,6 +3,7 @@ using System;
 using InternshipChat.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InternshipChat.Data.Migrations
 {
     [DbContext(typeof(InternshipChatDbContext))]
-    partial class InternshipChatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231231155502_Add-migration")]
+    partial class Addmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +42,7 @@ namespace InternshipChat.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Canals", (string)null);
+                    b.ToTable("Canals");
 
                     b.HasData(
                         new
@@ -99,7 +102,7 @@ namespace InternshipChat.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
 
                     b.HasData(
                         new
@@ -232,7 +235,7 @@ namespace InternshipChat.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
@@ -375,7 +378,7 @@ namespace InternshipChat.Data.Migrations
 
                     b.HasIndex("CanalId");
 
-                    b.ToTable("UserCanals", (string)null);
+                    b.ToTable("UserCanals");
 
                     b.HasData(
                         new

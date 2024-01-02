@@ -23,20 +23,23 @@ namespace InternshipChat.Presentation.Functions {
 		public User? FindByEmail(string email) {
 			return _userRepository.FindByEmail(email);
 		}
-		private int LastUserId() {
+		private int LastId() {
 			List<int> allIds = [];
 			foreach (var user in GetAllUsers()) {
 				allIds.Add(user.Id);
 			}
-			return allIds.Count;
+			return allIds.Max();
 		}
 		private bool DoesEmailExist(string email) {
-			List<string>allEmails = [];
+			List<string> allEmails = [];
 			foreach (var user in GetAllUsers()) {
 				allEmails.Add(user.Email);
 			}
-			return allEmails.Contains(email);
+			var contains = allEmails.Contains(email);
+			if (!contains) { Outputs.Wait("Email ne postoji"); }
+			return contains;
 		}
+		/**/
 		public User AddUser() {
 			var name = Inputs.StringInput("Unesi ime");
 			var surename = Inputs.StringInput("Unesi prezime");
@@ -51,7 +54,7 @@ namespace InternshipChat.Presentation.Functions {
 				repeatedPassword = Inputs.StringInput("Ponovno unesi lozinku");
 			} while (password != repeatedPassword);
 
-            var user = new User(LastUserId() + 1, name, surename, email, password);
+            var user = new User(LastId() + 1, name, surename, email, password);
 			_userRepository.Add(user);
 			return user;
 		}

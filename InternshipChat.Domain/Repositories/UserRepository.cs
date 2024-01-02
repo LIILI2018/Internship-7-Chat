@@ -22,7 +22,6 @@ namespace InternshipChat.Domain.Repositories {
 		public User? FindByEmail(string email) {
 			var user = DbContext.Users.FirstOrDefault(u => u.Email == email);
 			return user;/*Ako ne neđe usera vratit će null*/
-
 		}
 
 		public List<User> FindAll() {

@@ -59,17 +59,17 @@ namespace InternshipChat.Data.Seeds {
 
 			builder.Entity<Message>()
 			.HasData(new List<Message> { 			
-			new Message("Dadada","Pokemoni") { Id = 1, UserId = 1, CanalId = 3},
-			new Message("1","Jabuka je crvena") { Id = 2, UserId = 1, CanalId = 1},
-			new Message("2","Lorem ipsum dolor sit amet") { Id = 3, UserId = 1, CanalId = 2},
-			new Message("3","kako si") { Id = 4, UserId = 1, CanalId = 2},
-			new Message("4","Si akako") { Id = 5, UserId = 4, CanalId = 2},
-			new Message("5","A tout le monde") { Id = 6, UserId = 3, CanalId = 2},
-			new Message("6","A tout mes amies") { Id = 7, UserId = 2, CanalId = 3},
-			new Message("7","Je vus aime ") { Id = 8, UserId = 5, CanalId = 3},
-			new Message("8","Megadeath") { Id = 9, UserId = 3, CanalId = 3},
-			new Message("9","Sunce siješe bijelom bojom") { Id = 10, UserId = 6, CanalId = 3},
-			new Message("Kako si","si kako") { Id = 11, UserId = 4, CanalId = 3},
+			new Message("Dadada","Pokemoni",1,3,1),
+			new Message("1","Jabuka je crvena",1,1,2),
+			new Message("2","Lorem ipsum dolor sit amet",1,2,3),
+			new Message("3","kako si",1,2,4),
+			new Message("4","Si akako",4,2,5),
+			new Message("5","A tout le monde",3,2,6),
+			new Message("6","A tout mes amies",2,3,7),
+			new Message("7","Je vus aime ",5,3,8),
+			new Message("8","Megadeath",3,3,9),
+			new Message("9","Sunce siješe bijelom bojom",6,3,10),
+			new Message("Kako si","si kako",4,3,11),
 			});
 		}
 	}

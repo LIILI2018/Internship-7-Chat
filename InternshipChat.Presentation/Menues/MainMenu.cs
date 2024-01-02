@@ -22,10 +22,10 @@ namespace InternshipChat.Presentation.Menues
                 case 1:
                     GroupCanals.Submenu(user);
                     break;
-                    /*case 2:
-                        PrivateCanals();
+                case 2:
+                    PrivateCanals.Submenu(user);
                         break;
-                    case 3:
+                    /*case 3:
                         ProfileSettings();
                         break;
                     case 4:

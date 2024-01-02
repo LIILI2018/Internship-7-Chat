@@ -16,6 +16,7 @@ namespace InternshipChat.Data.Entities {
 
 		/*Manualno radiš veze između tablica*/
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
+
 			modelBuilder.Entity<UserCanal>()
 				.HasKey(uc => new { uc.UserId, uc.CanalId });//Radi primary key za user canal
 

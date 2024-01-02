@@ -49,12 +49,12 @@ namespace InternshipChat.Presentation.Menues
                 if (!EmailIsValid(email))
                 {
                     y = false; email = null;
-                    Inputs.Wait("Unio si email sa lošom strukturom");
+                    Outputs.Wait("Unio si email sa lošom strukturom");
                 }
                 else if (!userFunctions.EmailAndPasswordMatch(email, password))
                 {
                     y = false; email = null;
-                    Inputs.Wait("Email ili lozinka su krivi");
+					Outputs.Wait("Email ili lozinka su krivi");
                 }
                 if (!y)
                 {

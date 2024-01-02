@@ -53,13 +53,7 @@
 			Console.Clear();
 
 			return y;
-		}
-		//+ +
-		public static void Wait(string txt) {
-			Console.WriteLine(txt);
-			Console.WriteLine("Klikni enter za nastavak: ");
-			Console.ReadLine();
-		}
+		}		
 		//+ +
 		public static int OptionInput(List<string> txt) {
 			foreach (var item in txt) {
