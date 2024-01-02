@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace InternshipChat.Presentation.Menues {
 	public static class ProfileSettings {
-		public static void Submenu() {
-			var UF = new UserFunctions(RepositoryFactory.Create<UserRepository>());
+		public static void Submenu(UserFunctions UF, User user) {
 
-			var user = Utility.Functions.Login();/*Ili ovako ili samo unesi captcha i lozinku validate user*/
+			Utility.Functions.ValidateUser(user);/*Ili ovako ili samo unesi captcha i lozinku validate user*/
 			var x = Inputs.OptionInput(["1 - Promijeni email", "2 - Promijeni šifru"]);
 			switch (x) {
 				case 1:

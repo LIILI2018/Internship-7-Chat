@@ -7,11 +7,7 @@ using InternshipChat.Presentation.Utility;
 
 namespace InternshipChat.Presentation.Menues {
 	public static class PrivateCanals {
-		public static void Submenu(User user) {
-			var CF = new CanalFunctions(RepositoryFactory.Create<CanalRepository>());
-			var UCF = new UserCanalFunctions(RepositoryFactory.Create<UserCanalRepository>());
-			var MF = new MessageFunctions(RepositoryFactory.Create<MessageRepository>());
-
+		public static void Submenu(CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user) { 
 			var x = Inputs.OptionInput(["1 - Chat sa korisnikom", "2 - Ispiši sve korisnike s kojima si komunicirao", "3 - Izlaz"]);
 			switch (x) {
 				case 1:

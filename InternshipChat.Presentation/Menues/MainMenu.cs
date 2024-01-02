@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
 using System.Runtime.CompilerServices;
 
@@ -6,7 +7,7 @@ namespace InternshipChat.Presentation.Menues
 {
     public static class MainMenu
     {
-        public static void Create(User user)
+        public static void Create(UserFunctions UF,CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user)
         {
             int x;
             if (user.IsAdmin)
@@ -20,20 +21,20 @@ namespace InternshipChat.Presentation.Menues
             switch (x)
             {
                 case 1:
-                    GroupCanals.Submenu(user);
+                    GroupCanals.Submenu(CF,UCF,MF,user);
                     break;
                 case 2:
-                    PrivateCanals.Submenu(user);
+                    PrivateCanals.Submenu(CF, UCF, MF, user);
                         break;
                 case 3:
-                    ProfileSettings.Submenu();
+                    ProfileSettings.Submenu(UF, user);
                     break;
                     /*case 4:
                         LogOut();
-                        break;
-                    case 5:
-                        UserManagment();
                         break;*/
+                case 5:
+                    UserManagment.Submenu(UF, user);
+                    break;
             }
         }
     }

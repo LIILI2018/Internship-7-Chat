@@ -1,10 +1,11 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
 namespace InternshipChat.Presentation.Menues
 {
     public static class LoginFunctions
     {
-        public static User Authentication()
+        public static User Authentication(UserFunctions UF)
         {
             int x;
             User? user = null;
@@ -14,7 +15,7 @@ namespace InternshipChat.Presentation.Menues
                 switch (x)
                 {
                     case 1:
-                        user = Utility.Functions.Login();
+                        user = Utility.Functions.Login(UF);
                         break;
                     case 2:
                         user = Utility.Functions.Signin();

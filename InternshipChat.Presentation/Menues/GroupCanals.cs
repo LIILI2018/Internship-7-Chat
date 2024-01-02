@@ -9,12 +9,8 @@ namespace InternshipChat.Presentation.Menues
 {
     public static class GroupCanals
     {
-        public static void Submenu(User user)
+        public static void Submenu(CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user)
         {
-            var CF = new CanalFunctions(RepositoryFactory.Create<CanalRepository>());
-            var UCF = new UserCanalFunctions(RepositoryFactory.Create<UserCanalRepository>());
-            var MF = new MessageFunctions(RepositoryFactory.Create<MessageRepository>());
-
 			int x = Inputs.OptionInput(["1 - Kreiranje novog kanala", "2 - Ulazak u kanal", "3 - Ispiši sve svoje kanale"]);
             switch (x)
             {
