@@ -9,16 +9,16 @@ namespace InternshipChat.Data.Seeds {
 			{
 				new User(1,"Ivan", "Racetin","IvanRaca@gmail.com","RacaJeNajbolji",true),
 				new User(2,"Toni", "Cetinski","Muzika@gmail.com","321123",true),
-				new User(3,"Luko", "Paljetak","Pjesništvo1000@gmail.com","12345",true),
+				new User(3,"Luko", "Paljetak","Pjesnistvo@gmail.com","12345",true),
 				new User(4,"Mihaela", "Orah","RibeSuNajbolje@gmail.com","VoxPopuli123",true),
-				new User(5,"Marin", "Zika","Korona123@gmail.com","0987654321234567890",false),
+				new User(5,"Marin", "Zika","Korona@gmail.com","0987654321234567890",false),
 				new User(6,"Vojko", "V","BiliPivac@gmail.com","EpskiHahač",false),
-				new User(7,"Zoran", "Tadija","Zoran321@gmail.com","TomCruse",false),
+				new User(7,"Zoran", "Tadija","Zoran@gmail.com","TomCruse",false),
 				new User(8,"Željko", "Veliki","ZV@gmail.com","Raketa123",false),
 				new User(9,"Željko", "Veliki","ZM@gmail.com","Vlak123",false),
 				new User(10,"Veran", "Brkan","VEDROORDEV@gmail.com","Šifra",false),
-				new User(11,"Marin", "Getaldić","MarioDživo2@gmail.com","NeMaM ŠiFrU",false),
-				new User(12,"Dino", "Dujmović","DinoD.@gmail.com","DDDDd",true),
+				new User(11,"Marin", "Getaldić","MarioDzivo@gmail.com","NeMaM ŠiFrU",false),
+				new User(12,"Dino", "Dujmović","DinoD@gmail.com","DDDDd",true),
 				new User(13,"Dino", "Dujmović","aa","aa",true),
 				new User(14,"Dino", "Dujmović","aaa","aa",true)
 

@@ -1,16 +1,16 @@
 ﻿using InternshipChat.Data.Entities.Models;
-using InternshipChat.Domain.Factories;
-using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Functions;
 
 namespace InternshipChat.Presentation.Utility {
 	static public class Inputs {
+		//
 		public static string StringInput(string txt) {
 			Console.WriteLine(txt);
 			var y = Console.ReadLine();
 			Console.Clear();
 			return y;
 		}
+		//
 		public static int OptionInput(List<string> txt) {
 			foreach (var item in txt) {
 				Console.WriteLine(item);
@@ -23,27 +23,45 @@ namespace InternshipChat.Presentation.Utility {
 			Console.Clear();
 			return y;
 		}
-		public static string EmailInput() {
-			var UF = new UserFunctions(RepositoryFactory.Create<UserRepository>());
-
+		//!
+		public static string EmailInput(UserFunctions UF) {
 			string email;
 			do {
 				do {
-			email = StringInput("Unesi email");
-			} while (!Functions.CheckEmailStructure(email));
-		} while (UF.DoesEmailExist(email));
+					email = StringInput("Unesi email");
+					if (Functions.CheckEmailStructure(email))
+						break;
+                    Outputs.Wait("Kriva struktura emaila");
+                } while (true);
+			} while (!UF.DoesEmailExist(email));
 			return email;
 		}
+		//
+		public static string CreateEmail() {
+			string email;
+			do {
+				email = StringInput("Unesi email");
+				if (Functions.CheckEmailStructure(email))
+					break;
+				Outputs.Wait("Kriva struktura emaila");
+			} while (true);
+			return email;
+		}
+		//
 		public static string CreatePassword() {
 			string password;
 			string repeatedPassword;
 			do {
 				password = StringInput("Unesi lozinku");
 				repeatedPassword = StringInput("Ponovno unesi lozinku");
-			} while (password != repeatedPassword);
-			return password;
+				if (password == repeatedPassword) {
+					return password;
+				}
+				Outputs.Wait("Neispravan unos");
+            } while (true);
 		}
-		public static bool PasswordInput(User user) {/*treba biti mogučnost da se izađe*/
+		//
+		public static bool PasswordInput(User user) {
 			do {
 				var password = StringInput("Unesi lozinku");
 				if (user.CheckPassword(password))

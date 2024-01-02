@@ -1,7 +1,6 @@
 ﻿using InternshipChat.Data.Entities.Models;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
-using System.Runtime.CompilerServices;
 
 namespace InternshipChat.Presentation.Menues
 {
@@ -9,6 +8,7 @@ namespace InternshipChat.Presentation.Menues
     {
         public static void Create(UserFunctions UF,CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user)
         {
+            Console.Clear();
             int x;
             if (user.IsAdmin)
             {
@@ -25,13 +25,12 @@ namespace InternshipChat.Presentation.Menues
                     break;
                 case 2:
                     PrivateCanals.Submenu(CF, UCF, MF, user);
-                        break;
+                    break;
                 case 3:
                     ProfileSettings.Submenu(UF, user);
                     break;
-                    /*case 4:
-                        LogOut();
-                        break;*/
+                case 4:
+                    break;
                 case 5:
                     UserManagment.Submenu(UF, user);
                     break;

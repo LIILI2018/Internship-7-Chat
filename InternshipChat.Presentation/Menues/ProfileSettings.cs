@@ -17,7 +17,7 @@ namespace InternshipChat.Presentation.Menues {
 			var x = Inputs.OptionInput(["1 - Promijeni email", "2 - Promijeni šifru"]);
 			switch (x) {
 				case 1:
-					var email = Inputs.EmailInput();
+					var email = Inputs.EmailInput(UF);
 					UF.UpdateUser(user, Domain.Enums.UserVariableChange.Email, email);
 					break;
 				case 2:

@@ -1,6 +1,7 @@
 ﻿using InternshipChat.Data.Entities.Models;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
+//
 namespace InternshipChat.Presentation.Menues
 {
     public static class LoginFunctions
@@ -11,14 +12,15 @@ namespace InternshipChat.Presentation.Menues
             User? user = null;
             do
             {
-                x = Inputs.OptionInput(["1 - Use existing account", "2 - Create acount"]);
+                Console.WriteLine("Authentication screen");
+                x = Inputs.OptionInput(["1 - Koristi postijeći account", "2 - Stvori novi account"]);
                 switch (x)
                 {
                     case 1:
                         user = Utility.Functions.Login(UF);
                         break;
                     case 2:
-                        user = Utility.Functions.Signin();
+                        user = Utility.Functions.Signin(UF);
                         break;
                 }
             } while (user == null);

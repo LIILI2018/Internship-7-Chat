@@ -31,20 +31,23 @@ namespace InternshipChat.Presentation.Functions {
 			}
 			return allIds.Max();
 		}
+		//
 		public bool DoesEmailExist(string email) {
 			List<string> allEmails = [];
 			foreach (var user in GetAllUsers()) {
 				allEmails.Add(user.Email);
 			}
 			var contains = allEmails.Contains(email);
-			if (!contains) { Outputs.Wait("Email ne postoji"); }
+			if (!contains)
+				Outputs.Wait("Email ne postoji");
 			return contains;
 		}
 		/**/
-		public User AddUser() {
+
+		public User AddUser(UserFunctions UF) {
 			var name = Inputs.StringInput("Unesi ime");
 			var surename = Inputs.StringInput("Unesi prezime");
-			var email = Inputs.EmailInput();
+			var email = Inputs.CreateEmail();
 			var password = Inputs.CreatePassword();			
 
             var user = new User(LastId() + 1, name, surename, email, password);
