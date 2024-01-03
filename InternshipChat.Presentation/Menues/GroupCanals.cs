@@ -9,12 +9,12 @@ namespace InternshipChat.Presentation.Menues
     {
         public static void Submenu(UserFunctions UF, CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user)
         {
-			int x = Inputs.OptionInput(["1 - Kreiranje novog kanala", "2 - Chat screen", "3 - Ispiši sve kanale u kojima sudjeluješ"]);
+			int x = Inputs.OptionInput(["1 - Kreiranje novog kanala", "2 - Chat screen", "3 - Ispiši sve kanale u kojima sudjeluješ", "4 - Izlaz"]);
             switch (x)
             {
                 case 1:
                     var canal = CF.CreateCanal(CanalType.Public,null,null);
-                    Console.WriteLine(UCF.CreateUserCanal(user, canal));
+                    Outputs.Wait(UCF.CreateUserCanal(user, canal).ToString());
                     break;
 
                 case 2:
@@ -25,6 +25,7 @@ namespace InternshipChat.Presentation.Menues
                     UCF.WriteAllUsersUserCanals(user, CF, CanalType.Public);
                     Outputs.Wait("");
                     break;
+                default: break;
             }
         }
     }

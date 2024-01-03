@@ -7,11 +7,11 @@ namespace InternshipChat.Domain.Repositories {
 	public class UserCanalRepository : RepositoryPreset {
         public UserCanalRepository(InternshipChatDbContext dbContext) : base(dbContext){}
 
-		public QueryResponse Add(UserCanal userCanal) {
+		public OperationResult Add(UserCanal userCanal) {
 			DbContext.UserCanals.Add(userCanal);
 			return SaveChanges();
 		}
-		public QueryResponse Delete(UserCanal userCanal) {
+		public OperationResult Delete(UserCanal userCanal) {
 			DbContext.UserCanals.Remove(userCanal);
 			return SaveChanges();
 		}

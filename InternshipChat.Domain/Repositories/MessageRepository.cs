@@ -6,11 +6,11 @@ namespace InternshipChat.Domain.Repositories {
 	public class MessageRepository : RepositoryPreset{
 		public MessageRepository(InternshipChatDbContext dbContext) : base(dbContext) { }
 
-		public QueryResponse Add(Message message) {
+		public OperationResult Add(Message message) {
 			DbContext.Messages.Add(message);
 			return SaveChanges();
 		}
-		public QueryResponse Delete(Message message) {
+		public OperationResult Delete(Message message) {
 			DbContext.Messages.Remove(message);
 			return SaveChanges();
 		}

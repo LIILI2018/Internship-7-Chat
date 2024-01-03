@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Domain.Enums;
 using InternshipChat.Presentation.Functions;
 
 namespace InternshipChat.Presentation.Utility {
@@ -54,6 +55,7 @@ namespace InternshipChat.Presentation.Utility {
 				password = StringInput("Unesi lozinku");
 				repeatedPassword = StringInput("Ponovno unesi lozinku");
 				if (password == repeatedPassword) {
+					Outputs.Wait(OperationResult.Success.ToString());
 					return password;
 				}
 				Outputs.Wait("Neispravan unos");

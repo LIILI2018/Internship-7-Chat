@@ -1,5 +1,7 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Domain.Enums;
 using InternshipChat.Presentation.Functions;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace InternshipChat.Presentation.Utility {
@@ -31,23 +33,36 @@ namespace InternshipChat.Presentation.Utility {
 				if (x == 2) {
 					return false;
 				}
+				Console.Clear();
 			} while (true);
 		}
 		//
 		public static bool ValidateUser(User user) {
-			var validation = Inputs.PasswordInput(user);
-			if (!validation)
-				return false;
-			//validation = Captcha();
-			return validation;
+			bool validation = false;
+			bool thread2Finished = false;
+			var thread2 = new Thread(() =>
+			{
+				validation = Inputs.PasswordInput(user) && Captcha();					
+			});
+			thread2.Start();
+			Thread.Sleep(30000);
+			while (!thread2Finished) {
+				return validation;
+			}
+			thread2.Abort();
+			Console.WriteLine("pokemoni");
+			return false;				
 		}
 		//
 		public static User? Login(UserFunctions UF) {
 
 			var email = Inputs.EmailInput(UF,false);
 			var UserValidated = ValidateUser(UF.FindByEmail(email)!);
-			if (!UserValidated) 
+			if (!UserValidated) {
+				Outputs.Wait(OperationResult.Fail.ToString());
 				return null;
+			}
+			Outputs.Wait(OperationResult.Success.ToString());
 			return UF.FindByEmail(email)!;
 		}		
 		//

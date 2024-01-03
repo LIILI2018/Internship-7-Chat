@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Domain.Enums;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
 //

@@ -16,14 +16,14 @@ namespace InternshipChat.Presentation.Functions {
 			return _userCanalRepository.FindAll();
 		}
 		//
-		public QueryResponse DeleteUserCanal(UserCanal userCanal) {
+		public OperationResult DeleteUserCanal(UserCanal userCanal) {
 			return _userCanalRepository.Delete(userCanal);
 		}
 		//
-		public QueryResponse CreateUserCanal(User user, Canal canal) {
+		public OperationResult CreateUserCanal(User user, Canal canal) {
 			var userCanal = new UserCanal(user.Id, canal.Id);
 			if (UserCanalExists(userCanal)) {
-				return QueryResponse.NoChanges;
+				return OperationResult.NoChanges;
 			}
 			return _userCanalRepository.Add(userCanal) ;
 		}
@@ -50,7 +50,7 @@ namespace InternshipChat.Presentation.Functions {
 		/**/
 		
 		//
-		public QueryResponse WriteAllUsersUserCanals(User user, CanalFunctions CF, CanalType canalType) {
+		public OperationResult WriteAllUsersUserCanals(User user, CanalFunctions CF, CanalType canalType) {
 			List<Canal> canals = [];
 			foreach (var UserCanal in GetUserCanalByUserId(user.Id)) {
 				canals.Add(CF.GetCanalById(UserCanal.CanalId)!);
@@ -59,7 +59,7 @@ namespace InternshipChat.Presentation.Functions {
 			foreach (var canal in canals) {
 				Console.WriteLine(canal!.Name);
 			}
-			return QueryResponse.Success;
+			return OperationResult.Success;
 		}
 
 		public void DeleteUserCanalbyUserId(int userId) {

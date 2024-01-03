@@ -13,28 +13,27 @@ namespace InternshipChat.Presentation.Menues {
 			var userToChange = UF.SelectUser();
 			switch (x) {
 				case 1:
-					Console.WriteLine(UF.DeleteUser( UCF, MF, userToChange));
+					Outputs.Wait(UF.DeleteUser( UCF, MF, userToChange).ToString());
 					break;
 				case 2:
-                    Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.AdminStatus,""));
+                    Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.AdminStatus, ""));
 					Outputs.Wait($"{user.Name} je admin: {user.IsAdmin}");
-
 					break;
 				case 3:
                     Console.WriteLine("Uređivanje profila");
                     x = Inputs.OptionInput(["1 - Promijeni Ime", "2 - Promijeni prezime", "3 - Promijeni email", "4 - Promijeni šifru", "5 - Promijeni status admina", "6 - Izlaz"]);
 					switch (x) {
 						case 1:
-							Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.Name, Inputs.StringInput("Unesi novo ime korisnika")));
+							Outputs.Wait(UF.UpdateUser(userToChange, UserVariableChange.Name, Inputs.StringInput("Unesi novo ime korisnika")).ToString());
 							break;
 						case 2:
-							Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.Surename, Inputs.StringInput("Unesi novo prezime korisnika")));
+							Outputs.Wait(UF.UpdateUser(userToChange, UserVariableChange.Surename, Inputs.StringInput("Unesi novo prezime korisnika")).ToString());
 							break;
 						case 3:
-							Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.Name, Inputs.EmailInput(UF,true)));
+							Outputs.Wait(UF.UpdateUser(userToChange, UserVariableChange.Name, Inputs.EmailInput(UF,true)).ToString());
 							break;
 						case 4:
-							Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.Password, Inputs.CreatePassword()));
+							Outputs.Wait(UF.UpdateUser(userToChange, UserVariableChange.Password, Inputs.CreatePassword()).ToString());
 							break;
 						case 5:
 							Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.AdminStatus, ""));

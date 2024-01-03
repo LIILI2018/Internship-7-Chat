@@ -16,7 +16,7 @@ namespace InternshipChat.Presentation.Functions {
 		public void Delete(Message message) {
 			_messageRepository.Delete(message);
 		}
-		public QueryResponse CreateMessage(int userId, int canalId) {
+		public OperationResult CreateMessage(int userId, int canalId) {
 			var title = Inputs.StringInput("Unesi naslov poruke");
 			var txt = Inputs.StringInput("Unesi tekst poruke");
 			var message = new Message(title, txt, userId, canalId, LastId() + 1);

@@ -18,9 +18,11 @@ namespace InternshipChat.Presentation.Functions {
 		public User? GetUserById(int id) {
 			return _userRepository.FindById(id);
 		}
+		//
 		public User? FindByEmail(string email) {
 			return _userRepository.FindByEmail(email);
 		}
+		//
 		private int LastId() {
 			List<int> allIds = [];
 			foreach (var user in GetAllUsers()) {
@@ -37,7 +39,8 @@ namespace InternshipChat.Presentation.Functions {
 			var contains = allEmails.Contains(email);
 			return contains;
 		}
-		public QueryResponse DeleteUser(UserCanalFunctions UCF, MessageFunctions MF, User user)
+		//
+		public OperationResult DeleteUser(UserCanalFunctions UCF, MessageFunctions MF, User user)
 		{
 			UCF.DeleteUserCanalbyUserId(user.Id);
 			MF.DeleteUsersMessages(user.Id);
@@ -51,10 +54,13 @@ namespace InternshipChat.Presentation.Functions {
 			var surename = Inputs.StringInput("Unesi prezime");
 			var email = Inputs.EmailInput(UF,true);
 			var password = Inputs.CreatePassword();
-			if (!Utility.Functions.Captcha())
+			if (!Utility.Functions.Captcha()) {
+				Outputs.Wait(OperationResult.Fail.ToString());
 				return null;
-            var user = new User(LastId() + 1, name, surename, email, password);
+            }
+			var user = new User(LastId() + 1, name, surename, email, password);
 			_userRepository.Add(user);
+			Outputs.Wait(OperationResult.Success.ToString());
 			return user;
 		}
 
@@ -74,7 +80,7 @@ namespace InternshipChat.Presentation.Functions {
 			return users[y - 1];
 		}
 
-		public QueryResponse UpdateUser(User user, UserVariableChange userVariableChange, string change) {
+		public OperationResult UpdateUser(User user, UserVariableChange userVariableChange, string change) {
 			return _userRepository.Update(user, userVariableChange, change);
 		}
 	}

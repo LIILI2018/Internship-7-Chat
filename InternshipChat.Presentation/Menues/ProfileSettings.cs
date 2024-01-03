@@ -9,17 +9,17 @@ namespace InternshipChat.Presentation.Menues {
 
 			if(!Utility.Functions.ValidateUser(user))
 				return;
-			var x = Inputs.OptionInput(["1 - Promijeni email", "2 - Promijeni šifru"]);
+			var x = Inputs.OptionInput(["1 - Promijeni email", "2 - Promijeni šifru", "3 - Izlaz"]);
 			switch (x) {
 				case 1:
 					var email = Inputs.EmailInput(UF,true);
-					UF.UpdateUser(user, Domain.Enums.UserVariableChange.Email, email);
+					Outputs.Wait(UF.UpdateUser(user, Domain.Enums.UserVariableChange.Email, email).ToString());
 					break;
 				case 2:
 					var password = Inputs.CreatePassword();
-					UF.UpdateUser(user, Domain.Enums.UserVariableChange.Password, password);
+					Outputs.Wait(UF.UpdateUser(user, Domain.Enums.UserVariableChange.Password, password).ToString());
 					break;
-
+				default: break;
 			}
 		}
 	}

@@ -1,7 +1,8 @@
 ﻿namespace InternshipChat.Domain.Enums {
-	public enum QueryResponse {
+	public enum OperationResult {
 		Success,
 		NotFound,
-		NoChanges
+		NoChanges,
+		Fail
 	}
 }

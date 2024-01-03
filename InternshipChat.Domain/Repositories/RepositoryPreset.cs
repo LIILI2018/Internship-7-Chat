@@ -9,12 +9,12 @@ namespace InternshipChat.Domain.Repositories {
 			DbContext = dbContext;
 		}
 
-		protected QueryResponse SaveChanges() {
+		protected OperationResult SaveChanges() {
 			var hasChanges = DbContext.SaveChanges() > 0;
 			if (hasChanges)
-				return QueryResponse.Success;
+				return OperationResult.Success;
 
-			return QueryResponse.NoChanges;
+			return OperationResult.NoChanges;
 		}
 	}
 }

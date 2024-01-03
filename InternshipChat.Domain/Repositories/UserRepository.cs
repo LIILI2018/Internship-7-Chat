@@ -6,11 +6,11 @@ namespace InternshipChat.Domain.Repositories {
 	public class UserRepository : RepositoryPreset {
 		public UserRepository(InternshipChatDbContext dbContext) : base(dbContext) { }
 
-		public QueryResponse Add(User user) {
+		public OperationResult Add(User user) {
 			DbContext.Users.Add(user);
 			return SaveChanges();
 		}
-		public QueryResponse Delete(User user) {
+		public OperationResult Delete(User user) {
 			//Treba provjeriti postoji li user
 			DbContext.Users.Remove(user);
 			return SaveChanges();
@@ -27,7 +27,7 @@ namespace InternshipChat.Domain.Repositories {
 		public List<User> FindAll() {
 			return DbContext.Users.ToList();
 		}
-		public QueryResponse Update(User user, UserVariableChange userVariableChange, string change) {
+		public OperationResult Update(User user, UserVariableChange userVariableChange, string change) {
 			
 			switch (userVariableChange) {
 				case UserVariableChange.Name:
