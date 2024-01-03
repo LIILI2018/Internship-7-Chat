@@ -1,6 +1,7 @@
 ﻿using InternshipChat.Data.Entities.Models;
 using InternshipChat.Domain.Enums;
 using InternshipChat.Domain.Repositories;
+using InternshipChat.Presentation.Utility;
 
 namespace InternshipChat.Presentation.Functions {
 	public class UserCanalFunctions {
@@ -9,18 +10,19 @@ namespace InternshipChat.Presentation.Functions {
 			_userCanalRepository = userCanalRepository;
 		}
 		/**/
-		private List<UserCanal> GetAllUserCanals() {
+		//
+		public List<UserCanal> GetAllUserCanals() {
 			return _userCanalRepository.FindAll();
 		}
-
+		//
 		public QueryResponse CreateUserCanal(User user, Canal canal) {
-			var userCanal = new UserCanal(user.Id, canal.Id, user, canal);
+			var userCanal = new UserCanal(user.Id, canal.Id);
 			if (UserCanalExists(userCanal)) {
 				return QueryResponse.NoChanges;
 			}
-			;
-			return _userCanalRepository.Add(userCanal) ;
+            return _userCanalRepository.Add(userCanal) ;
 		}
+		//
 		public List<UserCanal> GetUserCanalByUserId(int userId) {
 			List<UserCanal> allUsersUserCanals = [];
 			foreach (var UserCanal in GetAllUserCanals()) {
@@ -41,7 +43,7 @@ namespace InternshipChat.Presentation.Functions {
 		}
 		/**/
 		
-
+		//
 		public QueryResponse WriteAllUsersUserCanals(User user, CanalFunctions CF) {
 			foreach (var UserCanal in GetUserCanalByUserId(user.Id)) {
 				var canal = CF.GetCanalById(UserCanal.CanalId);

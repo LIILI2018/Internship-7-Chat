@@ -1,17 +1,15 @@
 ﻿using InternshipChat.Data.Entities.Models;
 using InternshipChat.Data.Enums;
-using InternshipChat.Domain.Factories;
-using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
-
+//
 namespace InternshipChat.Presentation.Menues
 {
     public static class GroupCanals
     {
-        public static void Submenu(CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user)
+        public static void Submenu(UserFunctions UF, CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user)
         {
-			int x = Inputs.OptionInput(["1 - Kreiranje novog kanala", "2 - Ulazak u kanal", "3 - Ispiši sve svoje kanale"]);
+			int x = Inputs.OptionInput(["1 - Kreiranje novog kanala", "2 - Chat screen", "3 - Ispiši sve kanale u kojima sudjeluješ"]);
             switch (x)
             {
                 case 1:
@@ -20,11 +18,12 @@ namespace InternshipChat.Presentation.Menues
                     break;
 
                 case 2:
-                    CF.ChatScreen(CF,UCF,MF,user, CanalType.Public);                    
+                    CF.ChatScreen(UF, CF, UCF, MF, user, CanalType.Public);                    
 					break;
 
                 case 3:
                     UCF.WriteAllUsersUserCanals(user, CF);
+                    Outputs.Wait("");
                     break;
             }
         }

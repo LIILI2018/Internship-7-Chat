@@ -33,18 +33,26 @@ namespace InternshipChat.Presentation.Utility {
 						break;
                     Outputs.Wait("Kriva struktura emaila");
                 } while (true);
-			} while (!UF.DoesEmailExist(email));
+				if (UF.DoesEmailExist(email))
+					break;
+				Outputs.Wait("Email ne postoji");
+			} while (true);
 			return email;
 		}
 		//
-		public static string CreateEmail() {
+		public static string CreateEmail(UserFunctions UF) {
 			string email;
 			do {
-				email = StringInput("Unesi email");
-				if (Functions.CheckEmailStructure(email))
+				do {
+					email = StringInput("Unesi email");
+					if (Functions.CheckEmailStructure(email))
+						break;
+					Outputs.Wait("Kriva struktura emaila");
+				} while (true);
+				if (!UF.DoesEmailExist(email))
 					break;
-				Outputs.Wait("Kriva struktura emaila");
-			} while (true);
+				Outputs.Wait("Email se već koristi");
+            } while (true);
 			return email;
 		}
 		//

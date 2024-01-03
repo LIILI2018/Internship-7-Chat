@@ -1,6 +1,4 @@
 ﻿using InternshipChat.Data.Entities.Models;
-using InternshipChat.Domain.Factories;
-using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Functions;
 using System.Text.RegularExpressions;
 
@@ -16,9 +14,10 @@ namespace InternshipChat.Presentation.Utility {
 			string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 			var txt = "";
 			do {
+				txt = "";
 				Console.Clear();
 				for (int i = 0; i < new Random().Next(5, 10); i++) {
-					txt += chars[new Random().Next(1 + 26 + 26 + 10)];
+					txt += chars[new Random().Next(26 + 26 + 10)];
 				}
 				Console.WriteLine("Prepiši ovaj tekst");
 				Console.WriteLine(txt);
@@ -39,7 +38,7 @@ namespace InternshipChat.Presentation.Utility {
 			var validation = Inputs.PasswordInput(user);
 			if (!validation)
 				return false;
-			validation = Captcha();
+			//validation = Captcha();
 			return validation;
 		}
 		//
@@ -52,7 +51,7 @@ namespace InternshipChat.Presentation.Utility {
 			return UF.FindByEmail(email)!;
 		}		
 		//
-		public static User Signin(UserFunctions UF) {
+		public static User? Signin(UserFunctions UF) {
 			return UF.AddUser(UF);
 		}
 	}

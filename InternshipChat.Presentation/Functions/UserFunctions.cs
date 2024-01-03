@@ -14,12 +14,9 @@ namespace InternshipChat.Presentation.Functions {
 		public List<User> GetAllUsers() { 
 			return _userRepository.FindAll();
 		}
-		public bool EmailAndPasswordMatch(string email, string password) {
-			var user = _userRepository.FindByEmail(email);
-			if (user == null) {
-                return false;
-			}
-            return user.CheckPassword(password);
+		//
+		public User? GetUserById(int id) {
+			return _userRepository.FindById(id);
 		}
 		public User? FindByEmail(string email) {
 			return _userRepository.FindByEmail(email);
@@ -38,18 +35,22 @@ namespace InternshipChat.Presentation.Functions {
 				allEmails.Add(user.Email);
 			}
 			var contains = allEmails.Contains(email);
-			if (!contains)
-				Outputs.Wait("Email ne postoji");
 			return contains;
 		}
+		public QueryResponse DeleteUser(User user)
+		{
+			return _userRepository.Delete(user);
+		}
+
 		/**/
 
-		public User AddUser(UserFunctions UF) {
+		public User? AddUser(UserFunctions UF) {
 			var name = Inputs.StringInput("Unesi ime");
 			var surename = Inputs.StringInput("Unesi prezime");
-			var email = Inputs.CreateEmail();
-			var password = Inputs.CreatePassword();			
-
+			var email = Inputs.CreateEmail(UF);
+			var password = Inputs.CreatePassword();
+			if (!Utility.Functions.Captcha())
+				return null;
             var user = new User(LastId() + 1, name, surename, email, password);
 			_userRepository.Add(user);
 			return user;

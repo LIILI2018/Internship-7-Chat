@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +17,5 @@ namespace InternshipChat.Data.Entities.Models {
             UserId = userId;
             CanalId = canalId;
         }
-		public UserCanal(int userId, int canalId, User user, Canal canal)
-		{
-			UserId = userId;
-			CanalId = canalId;
-			User = user;
-			Canal = canal;
-		}
 	}
 }

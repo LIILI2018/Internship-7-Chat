@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Presentation.Functions;
 
 
 namespace InternshipChat.Presentation.Utility {
@@ -8,8 +9,8 @@ namespace InternshipChat.Presentation.Utility {
 			Console.WriteLine("Klikni enter za nastavak: ");
 			Console.ReadLine();
 		}
-		public static void WriteMessage(Message message) {
-            Console.WriteLine($"\n{message.User}: {message.Title}\n{message.Content}");
+		public static void WriteMessage( UserFunctions UF, Message message) {
+            Console.WriteLine($"\n{ UF.GetUserById( message.UserId)!.Name}: {message.Title}\n{message.Content}");
 		}
 	}
 }

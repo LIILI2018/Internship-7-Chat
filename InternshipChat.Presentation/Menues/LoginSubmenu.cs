@@ -4,7 +4,7 @@ using InternshipChat.Presentation.Utility;
 //
 namespace InternshipChat.Presentation.Menues
 {
-    public static class LoginFunctions
+    public static class LoginSubmenu
     {
         public static User Authentication(UserFunctions UF)
         {

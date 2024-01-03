@@ -7,22 +7,20 @@ using InternshipChat.Presentation.Utility;
 
 namespace InternshipChat.Presentation.Functions {
 	public class CanalFunctions {
-
 		private CanalRepository _canalRepository;
-
 		public CanalFunctions(CanalRepository userRepository) {
 			_canalRepository = userRepository;
 		}
 		/**/
-
+		//
 		public List<Canal> GetAllCanals() {
 			return _canalRepository.FindAll();
 		}
-
+		//
 		public Canal? GetCanalById(int canalId) {
 			return _canalRepository.FindById(canalId);
 		}
-
+		//
 		private List<Canal> GetCanalsByType(CanalType type) {
 			List<Canal> canals = [];
 			foreach (var canal in GetAllCanals()) {
@@ -40,20 +38,17 @@ namespace InternshipChat.Presentation.Functions {
 			}
 			return allIds.Max();
 		}
-
-		/*Treba ubaciti usera*/	
-		/*Što ako je kanal null*/
-		/*Treba staviti capcha*/
+		//
 		public Canal CreateCanal(CanalType canalType) {
-			var canal = new Canal(LastCanalId()+1, canalType, Inputs.StringInput("Unesi ime kanala"));
+            var canal = new Canal(LastCanalId() + 1, canalType, Inputs.StringInput("Unesi ime kanala"));
 			_canalRepository.Add(canal);
 			return canal;
 		}
-		
+		/**/
 		public Canal SelectCanal(UserCanalFunctions UCF) {
-			var allCanals = GetCanalsByType(CanalType.Public);
+			var canals = GetCanalsByType(CanalType.Public);
 			var i = 1;
-			foreach (var canal in allCanals) {
+			foreach (var canal in canals) {
                 Console.WriteLine($"{i} - {canal.Name}; {UCF.GetCanalMemberNumber(canal.Id)}");
 				i++;
             }
@@ -62,15 +57,15 @@ namespace InternshipChat.Presentation.Functions {
 			do {
 				success = int.TryParse(Console.ReadLine(), out y);
 			} while (!success || y > i || y < 1);
-			return allCanals[y - 1];
+			return canals[y - 1];
 		}
-
+		//
 		public Canal SelectUsersCanals(UserCanalFunctions UCF, User user, CanalType canalType) {
 
 			var canals = GetCanalsByType(canalType);
-			var allUsersUserCanal = UCF.GetUserCanalByUserId(user.Id);
+			var userCanals = UCF.GetUserCanalByUserId(user.Id);
 			List<int> canalIdList = [];
-			foreach (var userCanal in allUsersUserCanal) {
+			foreach (var userCanal in userCanals) {
 				canalIdList.Add(userCanal.CanalId);
 			}
 			canals = canals.Where(canal => canalIdList.Contains(canal.Id)).ToList();
@@ -88,9 +83,8 @@ namespace InternshipChat.Presentation.Functions {
 			return canals[y - 1];
 		}
 
-		public void ChatScreen(CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user, CanalType canalType) {
+		public void ChatScreen(UserFunctions UF, CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user, CanalType canalType) {
 			Canal canal = null!;
-			var UF = new UserFunctions(RepositoryFactory.Create<UserRepository>());
 			int x = 0;
 			if (canalType == CanalType.Public) {
 				canal = CF.SelectUsersCanals(UCF, user, canalType);
@@ -110,13 +104,13 @@ namespace InternshipChat.Presentation.Functions {
 			do {
 				Console.Clear();
 				foreach (var message in MF.GetMessagesByCanalId(canal.Id)) {
-					Outputs.WriteMessage(message);
+					Outputs.WriteMessage(UF, message);
 				};
-				x = Inputs.OptionInput(["1 - Napiši poruku", "2 - Izlaz"]);
+                Console.WriteLine();
+                x = Inputs.OptionInput(["1 - Napiši poruku", "2 - Izlaz"]);
 				if (x == 1) {
 					MF.CreateMessage(user.Id, canal.Id);
 				}
-				Outputs.Wait("");
 			} while (x == 1);			
 		}
 	}
