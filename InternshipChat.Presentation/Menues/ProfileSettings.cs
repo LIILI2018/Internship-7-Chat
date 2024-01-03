@@ -1,19 +1,14 @@
 ﻿using InternshipChat.Data.Entities.Models;
-using InternshipChat.Domain.Factories;
-using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace InternshipChat.Presentation.Menues {
 	public static class ProfileSettings {
 		public static void Submenu(UserFunctions UF, User user) {
 
-			Utility.Functions.ValidateUser(user);
+			if(!Utility.Functions.ValidateUser(user))
+				return;
 			var x = Inputs.OptionInput(["1 - Promijeni email", "2 - Promijeni šifru"]);
 			switch (x) {
 				case 1:

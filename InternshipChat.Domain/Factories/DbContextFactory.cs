@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
-/*Kopirao sa gita*/
 namespace InternshipChat.Domain.Factories {
 	public static class DbContextFactory {
 		public static InternshipChatDbContext GetInternshipChatDbContext() {

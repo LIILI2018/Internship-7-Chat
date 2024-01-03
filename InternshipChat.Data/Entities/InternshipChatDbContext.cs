@@ -13,38 +13,34 @@ namespace InternshipChat.Data.Entities {
 		public DbSet<User> Users => Set<User>();
 		public DbSet<Message> Messages => Set<Message>();
 		public DbSet<UserCanal> UserCanals => Set<UserCanal>();
-
-		/*Manualno radiš veze između tablica*/
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
 			modelBuilder.Entity<UserCanal>()
-				.HasKey(uc => new { uc.UserId, uc.CanalId });//Radi primary key za user canal
+				.HasKey(uc => new { uc.UserId, uc.CanalId });
 
 			modelBuilder.Entity<UserCanal>()
-				.HasOne(uc => uc.User)//Referencira user iz UserCanal
-				.WithMany(u => u.UserCanals)//Referencira collection iz Usera nazvanu UserCanals
-				.HasForeignKey(uc => uc.UserId);//Stvara forigen key UserId
+				.HasOne(uc => uc.User)
+				.WithMany(u => u.UserCanals)
+				.HasForeignKey(uc => uc.UserId);
 
 			modelBuilder.Entity<UserCanal>()
 				.HasOne(uc => uc.Canal)
 				.WithMany(c => c.UserCanals)
 				.HasForeignKey(uc => uc.CanalId);
-			/*Ovo je many to many veza između User-UserCanal-Canal vljd*/
 
 			modelBuilder.Entity<Message>()
 				.HasOne(m => m.Canal)
 				.WithMany(c => c.Messages);
-			//Message Canal veza
+
 			modelBuilder.Entity<Message>()
 				.HasOne(m => m.User)
 				.WithMany(u => u.Messages);
-			//Message User veza
+
 			Seeder.Seed(modelBuilder);
 			base.OnModelCreating(modelBuilder);
 		}
 	}
 }
-/*Ovo sam copy pasteao sa gita i samo zamijenio varijablu konteksta*/
 public class InternshipChatContextFactory : IDesignTimeDbContextFactory<InternshipChatDbContext> {
 	public InternshipChatDbContext CreateDbContext(string[] args) {
 		var config = new ConfigurationBuilder()

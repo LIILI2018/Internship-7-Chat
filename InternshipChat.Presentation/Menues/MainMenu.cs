@@ -29,7 +29,7 @@ namespace InternshipChat.Presentation.Menues
 				case 4:
 					return true;
 				case 5:
-                    UserManagment.Submenu(UF, CF, UCF, user);
+                    UserManagment.Submenu(UF, CF, UCF, MF, user);
 					return false;
                 default:
                     return false;

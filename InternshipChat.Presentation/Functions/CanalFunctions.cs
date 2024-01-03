@@ -14,11 +14,11 @@ namespace InternshipChat.Presentation.Functions {
 		/**/
 		//
 		public List<Canal> GetAllCanals() {
-			return _canalRepository.FindAll();
+			return _canalRepository.GetAll();
 		}
 		//
 		public Canal? GetCanalById(int canalId) {
-			return _canalRepository.FindById(canalId);
+			return _canalRepository.GetById(canalId);
 		}
 		//
 		private List<Canal> GetCanalsByType(CanalType type) {

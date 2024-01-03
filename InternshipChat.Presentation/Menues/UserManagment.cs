@@ -2,10 +2,10 @@
 using InternshipChat.Domain.Enums;
 using InternshipChat.Presentation.Functions;
 using InternshipChat.Presentation.Utility;
-
+//
 namespace InternshipChat.Presentation.Menues {
 	public static class UserManagment {
-		public static void Submenu(UserFunctions UF, CanalFunctions CF, UserCanalFunctions UCF, User user) {
+		public static void Submenu(UserFunctions UF, CanalFunctions CF, UserCanalFunctions UCF,MessageFunctions MF, User user) {
 			var x = Inputs.OptionInput(["1 - Izbriši profil", "2 - Postavi kao Admina", "3 - Uređivanje profila", "4 - Unesi korisnika u kanal","5 - Izlaz"]);
 			if (x == 5) {
 				return;
@@ -13,7 +13,7 @@ namespace InternshipChat.Presentation.Menues {
 			var userToChange = UF.SelectUser();
 			switch (x) {
 				case 1:
-					Console.WriteLine(UF.DeleteUser(UCF, userToChange));
+					Console.WriteLine(UF.DeleteUser( UCF, MF, userToChange));
 					break;
 				case 2:
                     Console.WriteLine(UF.UpdateUser(userToChange, UserVariableChange.AdminStatus,""));

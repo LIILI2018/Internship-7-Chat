@@ -37,9 +37,10 @@ namespace InternshipChat.Presentation.Functions {
 			var contains = allEmails.Contains(email);
 			return contains;
 		}
-		public QueryResponse DeleteUser(UserCanalFunctions UCF,User user)
+		public QueryResponse DeleteUser(UserCanalFunctions UCF, MessageFunctions MF, User user)
 		{
 			UCF.DeleteUserCanalbyUserId(user.Id);
+			MF.DeleteUsersMessages(user.Id);
 			return _userRepository.Delete(user);
 		}
 

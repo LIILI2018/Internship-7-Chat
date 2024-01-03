@@ -11,15 +11,14 @@ namespace InternshipChat.Domain.Repositories {
 			return SaveChanges();
 		}
 		public QueryResponse Delete(Canal canal) {
-			//Treba provjeriti postoji li canal
 			DbContext.Canals.Remove(canal);
 			return SaveChanges();
 		}
-		public Canal? FindById(int id) {
+		public Canal? GetById(int id) {
 			var canal = DbContext.Canals.Find(id);
-			return canal;/*Ako ne neđe usera vratit će null*/
+			return canal;
 		}
-		public List<Canal> FindAll() {
+		public List<Canal> GetAll() {
 			return DbContext.Canals.ToList();
 		}
 	}

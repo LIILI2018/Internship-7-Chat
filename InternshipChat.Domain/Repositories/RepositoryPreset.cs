@@ -1,6 +1,6 @@
 ﻿using InternshipChat.Data.Entities;
 using InternshipChat.Domain.Enums;
-/*Kopirao sa gita*/
+
 namespace InternshipChat.Domain.Repositories {
 	public abstract class RepositoryPreset {
 		protected readonly InternshipChatDbContext DbContext;

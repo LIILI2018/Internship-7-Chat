@@ -2,11 +2,6 @@
 using InternshipChat.Domain.Enums;
 using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InternshipChat.Presentation.Functions {
 	public class MessageFunctions {
@@ -17,6 +12,9 @@ namespace InternshipChat.Presentation.Functions {
 		/**/
 		public List<Message> GetAllMessages() {
 			return _messageRepository.GetAll();
+		}
+		public void Delete(Message message) {
+			_messageRepository.Delete(message);
 		}
 		public QueryResponse CreateMessage(int userId, int canalId) {
 			var title = Inputs.StringInput("Unesi naslov poruke");
@@ -42,6 +40,14 @@ namespace InternshipChat.Presentation.Functions {
 			canalsMessages.OrderBy(Message => Message.Id).ToList();/*Ne mogu updateat bazu da koristi DateTime*/
 
 			return canalsMessages;
+		}
+		public void DeleteUsersMessages(int userId) {
+			var messages = GetAllMessages();
+			foreach (var message in messages) {
+				if (message.UserId == userId) {
+					Delete(message);
+				}
+			}			
 		}
 		
 	}
