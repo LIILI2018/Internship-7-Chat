@@ -12,7 +12,6 @@ namespace InternshipChat.Domain.Repositories {
 			return SaveChanges();
 		}
 		public QueryResponse Delete(UserCanal userCanal) {
-			//Treba provjeriti postoji li user
 			DbContext.UserCanals.Remove(userCanal);
 			return SaveChanges();
 		}

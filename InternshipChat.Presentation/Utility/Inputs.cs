@@ -24,7 +24,7 @@ namespace InternshipChat.Presentation.Utility {
 			return y;
 		}
 		//!
-		public static string EmailInput(UserFunctions UF) {
+		public static string EmailInput(UserFunctions UF, bool isEmailCreation) {
 			string email;
 			do {
 				do {
@@ -33,26 +33,17 @@ namespace InternshipChat.Presentation.Utility {
 						break;
                     Outputs.Wait("Kriva struktura emaila");
                 } while (true);
-				if (UF.DoesEmailExist(email))
-					break;
-				Outputs.Wait("Email ne postoji");
-			} while (true);
-			return email;
-		}
-		//
-		public static string CreateEmail(UserFunctions UF) {
-			string email;
-			do {
-				do {
-					email = StringInput("Unesi email");
-					if (Functions.CheckEmailStructure(email))
+				if (isEmailCreation) {
+					if (!UF.DoesEmailExist(email))
 						break;
-					Outputs.Wait("Kriva struktura emaila");
-				} while (true);
-				if (!UF.DoesEmailExist(email))
-					break;
-				Outputs.Wait("Email se već koristi");
-            } while (true);
+					Outputs.Wait("Email se već koristi");
+				}
+				else {
+					if (UF.DoesEmailExist(email))
+						break;
+					Outputs.Wait("Email se ne koristi");
+				}
+			} while (true);
 			return email;
 		}
 		//

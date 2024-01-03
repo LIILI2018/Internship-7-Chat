@@ -37,8 +37,9 @@ namespace InternshipChat.Presentation.Functions {
 			var contains = allEmails.Contains(email);
 			return contains;
 		}
-		public QueryResponse DeleteUser(User user)
+		public QueryResponse DeleteUser(UserCanalFunctions UCF,User user)
 		{
+			UCF.DeleteUserCanalbyUserId(user.Id);
 			return _userRepository.Delete(user);
 		}
 
@@ -47,7 +48,7 @@ namespace InternshipChat.Presentation.Functions {
 		public User? AddUser(UserFunctions UF) {
 			var name = Inputs.StringInput("Unesi ime");
 			var surename = Inputs.StringInput("Unesi prezime");
-			var email = Inputs.CreateEmail(UF);
+			var email = Inputs.EmailInput(UF,true);
 			var password = Inputs.CreatePassword();
 			if (!Utility.Functions.Captcha())
 				return null;
@@ -68,6 +69,7 @@ namespace InternshipChat.Presentation.Functions {
 			do {
 				success = int.TryParse(Console.ReadLine(), out y);
 			} while (!success || y > i || y < 1);
+			Console.Clear();
 			return users[y - 1];
 		}
 

@@ -44,7 +44,7 @@ namespace InternshipChat.Presentation.Utility {
 		//
 		public static User? Login(UserFunctions UF) {
 
-			var email = Inputs.EmailInput(UF);
+			var email = Inputs.EmailInput(UF,false);
 			var UserValidated = ValidateUser(UF.FindByEmail(email)!);
 			if (!UserValidated) 
 				return null;

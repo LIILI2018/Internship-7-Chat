@@ -30,7 +30,7 @@ namespace InternshipChat.Presentation.Functions {
 			}
 			return canals;
 		}
-
+		//
 		private int LastCanalId() {
 			List<int> allIds = [];
 			foreach (var user in GetAllCanals()) {
@@ -39,8 +39,14 @@ namespace InternshipChat.Presentation.Functions {
 			return allIds.Max();
 		}
 		//
-		public Canal CreateCanal(CanalType canalType) {
-            var canal = new Canal(LastCanalId() + 1, canalType, Inputs.StringInput("Unesi ime kanala"));
+		public Canal CreateCanal(CanalType canalType, User? user1, User? user2) {
+			Canal canal;
+			if (canalType == CanalType.Public ) {
+				 canal = new Canal(LastCanalId() + 1, canalType, Inputs.StringInput("Unesi ime kanala"));
+			}
+			else {
+				 canal = new Canal(LastCanalId() + 1, canalType, $"{user1!.Name} - {user2!.Name}");
+			}
 			_canalRepository.Add(canal);
 			return canal;
 		}
@@ -60,7 +66,7 @@ namespace InternshipChat.Presentation.Functions {
 			return canals[y - 1];
 		}
 		//
-		public Canal SelectUsersCanals(UserCanalFunctions UCF, User user, CanalType canalType) {
+		public Canal? SelectUsersCanals(UserCanalFunctions UCF, User user, CanalType canalType) {
 
 			var canals = GetCanalsByType(canalType);
 			var userCanals = UCF.GetUserCanalByUserId(user.Id);
@@ -69,8 +75,9 @@ namespace InternshipChat.Presentation.Functions {
 				canalIdList.Add(userCanal.CanalId);
 			}
 			canals = canals.Where(canal => canalIdList.Contains(canal.Id)).ToList();
-
-			var i = 1;
+            if (canals.Count() == 0)
+				return null;
+            var i = 1;
 			foreach (var canal in canals) {
 				Console.WriteLine($"{i} - {canal.Name}; {UCF.GetCanalMemberNumber(canal.Id)}");
 				i++;
@@ -83,25 +90,33 @@ namespace InternshipChat.Presentation.Functions {
 			return canals[y - 1];
 		}
 
+		//
 		public void ChatScreen(UserFunctions UF, CanalFunctions CF, UserCanalFunctions UCF, MessageFunctions MF, User user, CanalType canalType) {
-			Canal canal = null!;
+			Canal? canal = null!;
 			int x = 0;
+			//
 			if (canalType == CanalType.Public) {
 				canal = CF.SelectUsersCanals(UCF, user, canalType);
 			}
+
 			else {
 				x = Inputs.OptionInput(["1 - Nastavi chat", "2 - Novi chat"]);
 
 				if (x == 1) {
-					CF.SelectUsersCanals(UCF, user, canalType);
+					canal = CF.SelectUsersCanals(UCF, user, canalType);
 				}
 				else{
-					canal = CreateCanal(CanalType.Private);
+					var user2 = UF.SelectUser();
+					canal = CreateCanal(CanalType.Private, user, user2);
                     UCF.CreateUserCanal(user, canal);
-					UCF.CreateUserCanal(UF.SelectUser(), canal);/*--------Postoji li već kanal s tim userom------------*/
+					UCF.CreateUserCanal(user2, canal);
 				}
-			}	
-			do {
+			}
+			if (canal is null) {
+				Outputs.Wait($"Ne sudjeluješ u {canalType} kanalu");
+				return;
+			}
+            do {
 				Console.Clear();
 				foreach (var message in MF.GetMessagesByCanalId(canal.Id)) {
 					Outputs.WriteMessage(UF, message);

@@ -1,4 +1,5 @@
 ﻿using InternshipChat.Data.Entities.Models;
+using InternshipChat.Data.Enums;
 using InternshipChat.Domain.Enums;
 using InternshipChat.Domain.Repositories;
 using InternshipChat.Presentation.Utility;
@@ -15,12 +16,16 @@ namespace InternshipChat.Presentation.Functions {
 			return _userCanalRepository.FindAll();
 		}
 		//
+		public QueryResponse DeleteUserCanal(UserCanal userCanal) {
+			return _userCanalRepository.Delete(userCanal);
+		}
+		//
 		public QueryResponse CreateUserCanal(User user, Canal canal) {
 			var userCanal = new UserCanal(user.Id, canal.Id);
 			if (UserCanalExists(userCanal)) {
 				return QueryResponse.NoChanges;
 			}
-            return _userCanalRepository.Add(userCanal) ;
+			return _userCanalRepository.Add(userCanal) ;
 		}
 		//
 		public List<UserCanal> GetUserCanalByUserId(int userId) {
@@ -39,19 +44,32 @@ namespace InternshipChat.Presentation.Functions {
 			return i;
 		}
 		private bool UserCanalExists(UserCanal userCanal) {
-			return GetAllUserCanals().Contains(userCanal);
+			bool containsItem = GetAllUserCanals().Any(userCanal2 => userCanal2.UserId == userCanal.UserId && userCanal2.CanalId == userCanal.CanalId);
+			return containsItem;
 		}
 		/**/
 		
 		//
-		public QueryResponse WriteAllUsersUserCanals(User user, CanalFunctions CF) {
+		public QueryResponse WriteAllUsersUserCanals(User user, CanalFunctions CF, CanalType canalType) {
+			List<Canal> canals = [];
 			foreach (var UserCanal in GetUserCanalByUserId(user.Id)) {
-				var canal = CF.GetCanalById(UserCanal.CanalId);
-                Console.WriteLine(canal!.Name);
-            }
+				canals.Add(CF.GetCanalById(UserCanal.CanalId)!);
+			}
+			canals = canals.Where(canal => canal.CanalType == canalType).ToList();
+			foreach (var canal in canals) {
+				Console.WriteLine(canal!.Name);
+			}
 			return QueryResponse.Success;
 		}
 
+		public void DeleteUserCanalbyUserId(int userId) {
+			var userCanals = GetAllUserCanals();
+			foreach (var userCanal in userCanals) {
+				if (userCanal.UserId == userId) {
+					DeleteUserCanal(userCanal);
+				}
+			}
+		}
 		
 	}
 }

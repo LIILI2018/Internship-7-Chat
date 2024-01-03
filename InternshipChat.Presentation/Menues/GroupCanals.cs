@@ -13,7 +13,7 @@ namespace InternshipChat.Presentation.Menues
             switch (x)
             {
                 case 1:
-                    var canal = CF.CreateCanal(CanalType.Public);
+                    var canal = CF.CreateCanal(CanalType.Public,null,null);
                     Console.WriteLine(UCF.CreateUserCanal(user, canal));
                     break;
 
@@ -22,7 +22,7 @@ namespace InternshipChat.Presentation.Menues
 					break;
 
                 case 3:
-                    UCF.WriteAllUsersUserCanals(user, CF);
+                    UCF.WriteAllUsersUserCanals(user, CF, CanalType.Public);
                     Outputs.Wait("");
                     break;
             }
