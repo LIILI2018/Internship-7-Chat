@@ -11,17 +11,16 @@ namespace InternshipChat.Domain.Repositories {
 			return SaveChanges();
 		}
 		public OperationResult Delete(User user) {
-			//Treba provjeriti postoji li user
 			DbContext.Users.Remove(user);
 			return SaveChanges();
 		}
 		public User? FindById(int id) {
 			var user = DbContext.Users.Find(id);
-			return user;/*Ako ne neđe usera vratit će null*/
+			return user;
 		}
 		public User? FindByEmail(string email) {
 			var user = DbContext.Users.FirstOrDefault(u => u.Email == email);
-			return user;/*Ako ne neđe usera vratit će null*/
+			return user;
 		}
 
 		public List<User> FindAll() {
